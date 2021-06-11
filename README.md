@@ -1,4 +1,4 @@
-# Learning frameworks for various airfoils
+# Learning Frameworks for Various Airfoils
 
 ## I. Introduction
 CFD too complicated to use, use ML to curtail time to determine optimal airfoil properties.
