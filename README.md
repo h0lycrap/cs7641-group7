@@ -15,6 +15,21 @@ Syntax highlighted code block
 ## Header 2
 ### Header 3
 
+# I. Introduction
+
+
+## II. Problem Statement 
+
+### III. Data Collection
+
+
+#### IV. Methods
+
+##### V.Results
+
+###### VI. Discussion
+
+###### VII. Conclusions
 - Bulleted
 - List
 
