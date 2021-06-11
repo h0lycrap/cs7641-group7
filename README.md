@@ -22,7 +22,7 @@ In essence, for a given parsecc parameter range, we can predict the range of lif
 
 Introduce Gabriel's paper, Martin's paper, what has been done in the past.
 
-Morphing wing aircraft are flight ve
+Morphing wing aircraft are flight vehicles which are able to alter their geometric configurations to interact with their environments in an optimal fashion.
 
 ## II. Problem Statement 
 Introduce lift and drag. Why in particular we are interested in the optimization techniques that we are. So, reducing drag will be commensurate with savings on fuel for a given flight mission, etc. 
