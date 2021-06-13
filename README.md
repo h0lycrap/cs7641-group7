@@ -26,9 +26,7 @@ Run data in XFOIL.
 The coordinate of various airfoil will be collected from UIUC Airfoil Database. The aerodynamic properties of each airfoil, such as lift coefficient, drag coefficient, moment coefficient ...etc, will be computing using XFOIL.
 
 ## IV. Methods
-Two methods will be used to identify the properties of airfoils. First method is to used clustering; given the distribution within each cluster is not known apripori, Gaussian Mixture model and/or Density-based clustering will be used. Within each cluster, the airfoils will be parameterized using PARSEC to find commonality within the clusters. Beta-CV, and Normalized cut will be used to evaluate quality of the clustering. The second method is to use artificial neural network to predict the property given defining parameters. The accuracy of the neural network will be computed using the labeled data from XFOIL. 
-
-
+Two methods will be used to classify airfoils based on their properties and to predict the airfoil class based on the PARSEC parameters. Firstly, clustering techniques will be used to identify airfoil classes based on properties such as lift and drag coefficients. Given that the distribution within each cluster is not known apriori, Gaussian Mixture Model and/or Density-based clustering will be used. Measures such as Beta-CV will be used to evaluate alternate clustering approaches. Next, a neural netwrok will be used to implement a technique such as logictic regression to classify arifoils into classes. The PARSEC parameters will act as the features. XFOIL can be used to generate test data to compute the accuracy of the classification.
 
 ## V. Potential results and Discussion
 
