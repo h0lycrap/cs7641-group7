@@ -25,9 +25,7 @@ Next the xy coordinates for the airfoils can be converted to PARSEC parameters f
 Two methods will be used to classify airfoils based on their properties and to predict the airfoil class based on the PARSEC parameters. Firstly, clustering techniques will be used to identify airfoil classes based on properties such as lift and drag coefficients. Given that the distribution within each cluster is not known apriori, Gaussian Mixture Model and/or Density-based clustering will be used. Measures such as Beta-CV will be used to evaluate alternate clustering approaches. Next, a neural netwrok will be used to implement a technique such as logictic regression to classify arifoils into classes. The PARSEC parameters will act as the features. XFOIL can be used to generate test data to compute the accuracy of the classification.
 
 ## V. Potential results and Discussion
-Enables us to discover relationships between airfoils and classify them into types
-
-Linking airfoil geometry to aerodynamic properties
+Enables us to discover relationships between airfoils and classify them into types. Linking airfoil geometry to aerodynamic properties
 
 
 
