@@ -26,6 +26,7 @@ Two methods will be used to classify airfoils based on their properties and to p
 
 ## V. Potential results and Discussion
 Enables us to discover relationships between airfoils and classify them into types
+
 Linking airfoil geometry to aerodynamic properties
 
 
