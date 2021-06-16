@@ -1,11 +1,9 @@
 # Learning Frameworks for Various Airfoils
 
 ## I. Introduction
-Even though Computational Fluid dynamics (CFD) is relative cheaper compared to physical experiments, it is very complicated and computationally expensive to get accurate results. Such disadvantages can be problematic during designing processes which require multiple design iterations. Even if the dimensionality of the airfoil is reduced from Cartesian coordinates to PARSEC parameters, finding optimal airfoil is not a trivial task. However, machine learning can be used to curtail time to determine optimal airfoil properties by providing prediction almost instantaneously.
-
-
+Although Computational Fluid Dynamics (CFD) surpasses experimental techniques in terms of time, cost and overall simplicity (this is attributed to the various complexities associated with the experimental setup), it is a nontrivial technique which necessitates significant amounts of computational cost to obtain accurate results (i.e. results comparable to those obtained using experimentation). Such factors prove to be sufficiently problematic during iterative design procedures. Dimensionality is one such issue associated with CFD. Though dimensionality may be addressed through altering coordinates from Cartesian to PARSEC parameters, the resulting shape may not be optimal. In particular, obtaining an optimal airfoil shape for given flight conditions is an arduous task. Such an optimization problem incorporates many factors, often times involving latent variables in the process, and may even lead itself to a multidisciplinary design optimization (MDO) problem. To this end, Machine Learning presents itself as the hero in disguise; we may leverage learning to curtail the time necessary to ascertain the aforementioned optimal airfoil properties.  
 ## II. Problem Statement 
-Given dataset with airfoil parameters and associated aerodynamic performances, clustering and neural network will be trained to predict aerodynamic properties as accurate as possible. The goal is to find ideal clustering method and number of clusters for clustering and appropriate architecture of the network and its associated weight for neural network. 
+The problem at hand is presented as follows; given a dataset with airfoil parameters and corresponging aerodynamic performances, clustering will be conducted and neural networks will be trained to predict sufficiently accurate aerodynamic properties of interest. The objective at hand is to determine an ideal clustering method as well as an optimal number of clusters for the cluster analysis. Additionally, we seek to determine an architecture, along with associated weights, which properly models the given network.
 
 
 ## III. Data Collection
