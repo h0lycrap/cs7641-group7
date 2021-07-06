@@ -60,6 +60,25 @@ The GMM models were trained several times. The same general trend was observed f
 
 K-Means was also used to cluster the airfoils.
 
+We leverage K-Means clustering on the data usin six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data. 
+INSERT THE CLUSTERED DATA HERE
+
+Label: K-Means Implemented for 6 Clusters
+
+From the figures above, it is evident that the airfoils are indeed clustered based on lift coefficient values. Additionally, the K-Means algorithm is able to identify airfoils with lift coefficients of zero, (these are indeed our symmetric airfoils, which have a theoretical lift coefficient value of zero) and categorize them into a single group. This is indeed comparable to the approach taken by the GMM implementation as well. 
+
+Following this, we analyze the data using an Expectation Maximization framework. This entails randomly selecting cluters, assigning labels based on the nearest clusters (accomplished using pairwise distance arithmetic), subsequently determining new centers and finally ensuring that there is convergence. This approach is also able to categorize airfoils with zero lift coefficients into a single group. 
+
+INSERT E-M DATA RESULTS HERE
+
+Finally, we analyze the data using Spectral Clustering. In essence, this technique leverages nearest-neighbor graphs to cluster unorganized data into groups based on common features. Below we provide a graph of the results obtained using spectral clustering. 
+
+INSERT SPECTRAL CLUSTERING DATA HERE
+
+
+Finally, we provide the folloiwng 3D plot to visualize the labelled data. 
+
+PROVIDE 3D PLOT JERE
 ### Airfoil Classification
 
 Based on the results from the clustering, all of the training airfoils will be labelled with the appropriate cluster assignment. These act as the labels for classification, while the PARSEC parameters act as the features.
