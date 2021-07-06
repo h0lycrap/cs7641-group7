@@ -15,7 +15,24 @@ As mentioned previously, the number of shape coordinates for each airfoil file i
 The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift and drag coefficients as labels. 
 
 ## IV. Methods
-Both supervised and unsupervised learning will be used to classify airfoils based on their properties and to predict the airfoil class based on the PARSEC parameters. Firstly, clustering techniques will be used to identify airfoil classes based on properties such as lift, drag and moment coefficients. Given that the distribution within each cluster is not known apriori, Gaussian Mixture Model and Density-based clustering will be used. Metrics such as Beta-CV will be used to evaluate alternate clustering approaches and number of clusters. Next, an artificial neural network will be used to implement a technique such as logistic regression to classify airfoils into classes. The PARSEC parameters will act as the features.
+Both supervised and unsupervised learning will be used to classify airfoils based on their properties and to predict the airfoil class based on the PARSEC parameters. Firstly, clustering techniques were used to identify airfoil classes based on properties such as lift, drag and volume. Several clustering techniques were used, including K-Means and Gaussian Mixture Models (GMMs). Next, an artificial neural network will be used to implement a technique such as logistic regression to classify airfoils into classes. The PARSEC parameters will act as the features.
+
+### Airfoil Clustering
+
+Several clustering algorithms were implemented. The data consists of three features: the lift coefficient (Cl), the drag coefficient (Cd) and the volume. A visualization of the data is shown below. [INSERT FIGURE]
+
+GMM models were trained on the data with a varying number of clusters/components. A visualization of the result using six clusters is shown below. [INSERT FIGURE]
+
+The GMM models were evaluated using two metrics:
+1. The silhouette coefficient
+2. 2. The Davies-Bouldin index
+
+The results for a number of clusters varying from 2 to 12 can be seen below. [INSERT FIGURE]
+
+
+### Airfoil Classification
+
+Based on the results from the clustering, all of the training airfoils will be labelled with the appropriate cluster assignment. These act as the labels for classification, while the PARSEC parameters act as the features.
 
 ## V. Potential results and Discussion
 This project will enable the creation of a low-runtime model that maps an airfoil shape to its aerodynamic performance. Ideally, the predictions made should be comparable to those made by a software such as XFOIL. In turn, this model could be used within a larger project relating to aerodynamic shape optimization. 
