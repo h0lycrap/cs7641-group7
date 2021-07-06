@@ -21,14 +21,14 @@ Both supervised and unsupervised learning will be used to classify airfoils base
 
 Several clustering algorithms were implemented. The data consists of three features: the lift coefficient (Cl), the drag coefficient (Cd) and the volume. A visualization of the data is shown below. 
 
-![Visualization of airfoil data](/Images/airfoil_data.png?raw=true "Visualization of airfoil data")
+![Visualization of airfoil data](Images/airfoil_data.png?raw=true "Visualization of airfoil data")
 
 Visualization of airfoil data
 
 
 GMM models were trained on the data with a varying number of clusters/components. A visualization of the result using six clusters is shown below. 
 
-![GMM with six clusters](/Images/gmm_six_clusters.png?raw=true)
+![GMM with six clusters](Images/gmm_six_clusters.png?raw=true)
 
 GMM with six clusters
 
@@ -38,11 +38,11 @@ The GMM models were evaluated using two metrics:
 
 The results for a number of clusters varying from 2 to 12 can be seen below. 
 
-![Silhouette coefficient for GMM models](/Images/gmm_sil_coeff.png?raw=true)
+![Silhouette coefficient for GMM models](Images/gmm_sil_coeff.png?raw=true)
 
 Silhouette coefficient for GMM models
 
-![Davies-Bouldin Index for GMM models](/Images/gmm_dbindex.png?raw=true)
+![Davies-Bouldin Index for GMM models](Images/gmm_dbindex.png?raw=true)
 
 Davies-Bouldin Index for GMM models
 
