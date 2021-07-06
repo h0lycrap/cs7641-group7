@@ -28,9 +28,9 @@ Visualization of airfoil data
 There are several things that can be noted about the training data: 
 1. Most of the data is not clearly separated in easily identifiable clusters. Therefore, cluster assignments cannot be made through visual inspection.
 2. There is one identifiable pattern in the data: several airfoils have a lift coefficient (Cl) of zero. These airfoils are symmetric. The data was captured at an angle of attack of zero, and in this case, the Cl for symmetric airfoils is also zero.
-3. We do not have access to any ground truth data that clearly associates each airfoil with a particular cluster or class. Typically, different clustering algorithms would be compared based on their performance with respect to some ground truth, but since it is not available, it is not easy to compare clustering techniques directly. Therefore, we have separately evaluated each technique used and contrasted the results rather than evaluating their relative performance.
+3. We do not have access to any ground truth data that clearly associates each airfoil with a particular cluster or class. Typically, different clustering algorithms would be compared based on their performance with respect to some ground truth, but since it is not available, it is not easy to compare clustering techniques directly. Therefore, we have separately evaluated each technique used and contrasted the results, rather than evaluating their performance relative to each other.
 
-GMM models were trained on the data with a varying number of clusters/components. A visualization of the result using six clusters is shown below. 
+First, GMM models were trained on the data with a varying number of clusters/components. A visualization of the result using six clusters is shown below. 
 
 ![GMM with six clusters](Images/gmm_six_clusters.png?raw=true)
 
@@ -40,7 +40,7 @@ We can see that the airfoils are clustered mainly based on their Cl values. The 
 
 The GMM models were evaluated using two metrics:
 1. The silhouette coefficient
-2. 2. The Davies-Bouldin index
+2. The Davies-Bouldin index
 
 The results for a number of clusters varying from 2 to 12 can be seen below. 
 
@@ -56,7 +56,7 @@ Davies-Bouldin Index for GMM models
 
 The Davies-Bouldin index should ideally be as low as possible. Once again, the best value is obtained with just 2 clusters, with the next best value at 7 clusters.
 
-The GMM models were trained several times. The same general trend was observed for the evaluation metrics, though there were slight differences in the optimal cluster values. If the models are evaluated based on the metrics alone, it suggests that 2 clusters are ideal. However, if only 2 clusters are used, the model simply splits the airfoils evenly near the mean of the Cl value. On the other hand, if a greater number of clusters are used, the model may identify patterns within the data. For example, the similarity in the symmetric airfoils is identified and the GMM places them in a single cluster. Therefore, we selected 6-8 clusters as the optimal number based on the results from the GMMs.
+The GMM models were trained several times. The same general trend was observed for the evaluation metrics, though there were slight differences in the optimal number of clusters. If the models are evaluated based on the metrics alone, it suggests that 2 clusters are ideal. However, if only 2 clusters are used, the model simply splits the airfoils evenly near the mean of the Cl values. On the other hand, if a greater number of clusters are used, the model may identify patterns within the data. For example, the similarity in the symmetric airfoils is identified and the GMM places them in a single cluster. Therefore, we selected 6-8 clusters as the optimal number based on the results from the GMMs.
 
 K-Means was also used to cluster the airfoils.
 
