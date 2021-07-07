@@ -242,11 +242,9 @@ ax[0].legend()
 ax[0].set_title('Best Parameterization')
 ax[0].set_aspect(5) # hard coded
 ax[1].plot(x_coord_data,y_params_worst, label='parameterized airfoil')
-ax[1].plot(x_coord_data,y_data_worst, label='parameterized airfoil')
+ax[1].plot(x_coord_data,y_data_worst, label='actual airfoil')
 ax[1].legend()
 ax[1].set_title('Worst Parameterization')
 ax[1].set_aspect(2) # hard coded
 plt.tight_layout()
 plt.show()
-
-
