@@ -163,8 +163,8 @@ def read_data_csv():
     # there seems to be error in the data set
     col_zero = y_thick_coord[:,0]
     col_zero = col_zero[:,np.newaxis]
-    y_thick_coord = np.delete(y_thick_coord,[0],axis=1)
-    y_thick_coord = np.hstack((y_thick_coord,col_zero))
+    #y_thick_coord = np.delete(y_thick_coord,[0],axis=1)
+    #y_thick_coord = np.hstack((y_thick_coord,col_zero))
     y_thick_coord = y_thick_coord/2
 
     # thickness data is labeled in reverse order from mean chord data
@@ -187,7 +187,7 @@ def read_data_csv():
     y_coord_data = np.hstack((y_lower_coord,y_upper_coord[:,1:]))
     x_coord_data = np.concatenate((x_lower_coord,x_upper_coord[1:]))
 
-    return y_coord_data,airfoil_label
+    return y_coord_data,x_coord_data,airfoil_label
 
 
 def penalty(opt_params,opt_ind):
@@ -202,9 +202,9 @@ def penalty(opt_params,opt_ind):
     return pen
 
 # Main code
-y_coord_data,airfoil_label = read_data_csv()
+y_coord_data,x_coord_data,airfoil_label = read_data_csv()
 r,_ = y_coord_data.shape
-params_0 = np.zeros(9) + 0.5
+params_0 = np.zeros(9) + 0.05
 
 # preallocate parameter array
 # last column is for the error
@@ -214,9 +214,8 @@ t1 = time()
 
 for i in range(r):
     print(str(i+1)+'/'+str(r))
-    bnds =((1e-6,np.inf),(1e-6,np.inf),(1e-6,np.inf),(1e-6,np.inf),(1e-6,np.inf),(1e-6,np.inf),(1e-6,np.inf),(1e-6,np.inf),(1e-6,np.inf))
-    # default method is BFGS
-    res = minimize(penalty, params_0, args=(i), tol=1e-6, options={'maxiter': 5000}, bounds=bnds)
+    bnds =((1e-6,np.inf),(1e-6,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(1e-6,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(-np.inf,np.inf))
+    res = minimize(penalty, params_0, args=(i), tol=1e-6, method = 'SLSQP', options={'maxiter': 5000}, bounds=bnds)
     if res.success == False:
         print("Optimization Failed")
     opt_params[i,0:9] = np.array(res.x)
@@ -227,6 +226,27 @@ elapsed = t2 - t1
 print(elapsed)
 
 # plot the best case and the worst case
+ind_best = np.argmin(opt_params[:,-1])
+ind_worst = np.argmax(opt_params[:,-1])
+y_params_best = opt_params[ind_best,:-1]
+y_params_best = params_to_coord(y_params_best)
+y_params_worst = opt_params[ind_worst,:-1]
+y_params_worst = params_to_coord(y_params_worst)
+y_data_best = y_coord_data[ind_best,:]
+y_data_worst = y_coord_data[ind_worst,:]
 
+plt.figure()
+plt.plot(x_coord_data,y_params_best, label='parameterized airfoil')
+plt.plot(x_coord_data,y_data_best, label='actual airfoil')
+plt.legend()
+ax = plt.gca()
+#ax.set_aspect(auto)
 
+plt.figure()
+plt.plot(x_coord_data,y_params_worst, label='parameterized airfoil')
+plt.plot(x_coord_data,y_data_worst, label='actual airfoil')
+plt.legend()
+ax = plt.gca()
+#ax.set_aspect(3)
 
+plt.show()
