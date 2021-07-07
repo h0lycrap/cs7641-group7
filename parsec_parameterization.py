@@ -241,7 +241,7 @@ plt.plot(x_coord_data,y_data_best, label='actual airfoil')
 plt.legend()
 plt.title('Best Parameterization')
 ax = plt.gca()
-ax.set_aspect(5)
+ax.set_aspect(5) # manually configured
 
 plt.figure()
 plt.plot(x_coord_data,y_params_worst, label='parameterized airfoil')
@@ -249,6 +249,6 @@ plt.plot(x_coord_data,y_data_worst, label='actual airfoil')
 plt.legend()
 plt.title('Worst Parameterization')
 ax = plt.gca()
-ax.set_aspect(2)
+ax.set_aspect(2) # manually configured
 
 plt.show()
