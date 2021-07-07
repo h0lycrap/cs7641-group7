@@ -13,7 +13,7 @@ Out of the 1600 initial airfoils in the dataset, only 600 were able to make XFoi
 As mentioned previously, the number of shape coordinates for each airfoil file is not consistent. In average, each file contains about 20 discrete points which were not extracted at the same x coordinate. Moreover, the discrete shape parameterization can lead to poor results when applied to a machine learning framework or an optimization process as any small change in the discrete shape coordinates can lead to a degenerated shape that does not correspond to a feasible airfoil shape. The goal of the data preprocessing for this project is to reduce the dimensionality of the dataset, make it homogeneous, readable and practicalfor any machine learning framework. There exist multiple methods to perform this such as changing the shape parameterization technique, such as using Bezier curves or the NACA 4-digit method. One of the methods that has proven to be effective in terms of representing airfoil shapes is the PARSEC method that only contains 11 shape parameters, reducing the dimensionality in half. Additionaly, the trailing edge thickness and location is assumed to be 0, which further reduces dimension to 9. An illustration of the PARSEC parameterization is shown in the Figure 1[1].
 
 <figure>
-<center><img src="/Images/parsec_parameters.PNG"></center>
+<center><img src="Images/parsec_parameters.PNG"></center>
 <center><figcaption>Figure 1.Visualization of PARSEC parameters</figcaption></center>
 </figure>
 
