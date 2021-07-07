@@ -16,7 +16,11 @@ As mentioned previously, the number of shape coordinates for each airfoil file i
 
 *Figure 1.Visualization of PARSEC parameters*
 
-The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift and drag coefficients as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil resembles the actual airfoil. [add images of parameterizaed airfoil]
+The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift and drag coefficients as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil resembles the actual airfoil. 
+
+![](Images/best_parameterization.png)
+![](Images/worst_parameterization.png)
+*Figure 2. Airfoil parameterization results*
 
 ## IV. Methods
 Both supervised and unsupervised learning will be used to classify airfoils based on their properties and to predict the airfoil class based on the PARSEC parameters. Firstly, clustering techniques were used to identify airfoil classes based on properties such as lift, drag and volume. Several clustering techniques were used, including K-Means and Gaussian Mixture Models (GMMs). Next, an artificial neural network will be used to implement a technique such as logistic regression to classify airfoils into classes. The PARSEC parameters will act as the features.
@@ -27,7 +31,7 @@ Several clustering algorithms were implemented. The data consists of three featu
 
 ![](Images/airfoil_data.png?raw=true "Visualization of airfoil data")
 
-*Figure 2. Visualization of airfoil data*
+*Figure 3. Visualization of airfoil data*
 
 There are several things that can be noted about the training data: 
 1. Most of the data is not clearly separated in easily identifiable clusters. Therefore, cluster assignments cannot be made through visual inspection.
@@ -38,7 +42,7 @@ First, GMM models were trained on the data with a varying number of clusters/com
 
 ![](Images/gmm_six_clusters.png?raw=true)
 
-*Figure 3. GMM with six clusters*
+*Figure 4. GMM with six clusters*
 
 We can see that the airfoils are clustered mainly based on their Cl values. The GMM also identifies most of the symmetric airfoils and places them within a separate cluster.
 
@@ -48,15 +52,15 @@ The GMM models were evaluated using two metrics:
 
 The results for a number of clusters varying from 2 to 12 can be seen below. 
 
-![Silhouette coefficient for GMM models](Images/gmm_sil_coeff.png?raw=true)
+![](Images/gmm_sil_coeff.png?raw=true)
 
-Silhouette coefficient for GMM models
+*Figure 5. Silhouette coefficient for GMM models*
 
 Ideally, the silhouette coefficient should be as close to 1 as possible. The best value is obtained with only 2 clusters, after which there is a steep drop. The next best value is obtained at 7 clusters.
 
-![Davies-Bouldin Index for GMM models](Images/gmm_dbindex.png?raw=true)
+![](Images/gmm_dbindex.png?raw=true)
 
-Davies-Bouldin Index for GMM models
+*Figure 6. Davies-Bouldin Index for GMM models*
 
 The Davies-Bouldin index should ideally be as low as possible. Once again, the best value is obtained with just 2 clusters, with the next best value at 7 clusters.
 
