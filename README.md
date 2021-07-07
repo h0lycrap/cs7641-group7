@@ -36,11 +36,6 @@ Several clustering algorithms were implemented. The data consists of three featu
 <center><figcaption>Figure 3. Visualization of airfoil data</figcaption></center>
 </figure>
 
-
-# ![](Images/airfoil_data.png?raw=true "Visualization of airfoil data")
-
-# *Figure 3. Visualization of airfoil data*
-
 There are several things that can be noted about the training data: 
 1. Most of the data is not clearly separated in easily identifiable clusters. Therefore, cluster assignments cannot be made through visual inspection.
 2. There is one identifiable pattern in the data: several airfoils have a lift coefficient (Cl) of zero. These airfoils are symmetric. The data was captured at an angle of attack of zero, and in this case, the Cl for symmetric airfoils is also zero.
