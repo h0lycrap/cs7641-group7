@@ -18,8 +18,7 @@ As mentioned previously, the number of shape coordinates for each airfoil file i
 
 The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift and drag coefficients as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil resembles the actual airfoil. 
 
-![](Images/best_parameterization.png)
-![](Images/worst_parameterization.png)
+![](Images/airfoil_parameterization.png)
 
 *Figure 2. Airfoil parameterization results*
 
