@@ -86,7 +86,7 @@ We leverage K-Means clustering on the data using six clusters, in a similar fash
 We visualize the labeled data trained using K-Means for 6 clusters/components. 
 <figure>
 <center><img src="Images/2DVisualizationCombined.png"></center>
-<center><figcaption>Figure 8.2D Plot to Visualize Labelled Data</figcaption></center>
+<center><figcaption>Figure 8. 2D Plot to Visualize Labelled Data</figcaption></center>
 </figure>
 
 From the figures above, it is evident that the airfoils are indeed clustered based on lift coefficient values. Additionally, the K-Means algorithm is able to identify airfoils with lift coefficients of zero, (these are our symmetric airfoils, which have a theoretical lift coefficient value of zero) and categorize them into a single group. This is indeed comparable to the approach taken by the GMM implementation as well. 
