@@ -74,10 +74,11 @@ The GMM models were trained several times. The same general trend was observed f
 
 K-Means was also used to cluster the airfoils.
 
-We leverage K-Means clustering on the data usign six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data.
-
-INSERT THE CLUSTERED DATA HERE
-
+We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data.
+<figure>
+<center><img src="Images/kmeansclustereddata.png"></center>
+<center><figcaption>Figure 4. GMM with six clusters</figcaption></center>
+</figure>
 Label: K-Means Implemented for 6 Clusters
 
 From the figures above, it is evident that the airfoils are indeed clustered based on lift coefficient values. Additionally, the K-Means algorithm is able to identify airfoils with lift coefficients of zero, (these are our symmetric airfoils, which have a theoretical lift coefficient value of zero) and categorize them into a single group. This is indeed comparable to the approach taken by the GMM implementation as well. 
