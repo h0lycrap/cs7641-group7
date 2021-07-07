@@ -64,7 +64,7 @@ The results for a number of clusters varying from 2 to 12 can be seen below.
 Ideally, the silhouette coefficient should be as close to 1 as possible. The best value is obtained with only 2 clusters, after which there is a steep drop. The next best value is obtained at 7 clusters.
 
 <figure>
-<center><img src="Images/gmm_dbindex.png.png"></center>
+<center><img src="Images/gmm_dbindex.png"></center>
 <center><figcaption>Figure 6. Davies-Bouldin Index for GMM models</figcaption></center>
 </figure>
 
