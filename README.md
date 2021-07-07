@@ -17,16 +17,12 @@ As mentioned previously, the number of shape coordinates for each airfoil file i
 <center><figcaption>Figure 1.Visualization of PARSEC parameters</figcaption></center>
 </figure>
 
-  
-![](Images/parsec_parameters.PNG)
-
-*Figure 1.Visualization of PARSEC parameters*
-
 The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift and drag coefficients as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil resembles the actual airfoil. 
 
-![](Images/airfoil_parameterization.png)
-
-*Figure 2. Airfoil parameterization results*
+<figure>
+<center><img src="Images/airfoil_parameterization.png"></center>
+<center><figcaption>Figure 2. Airfoil parameterization results</figcaption></center>
+</figure>
 
 ## IV. Methods
 Both supervised and unsupervised learning will be used to classify airfoils based on their properties and to predict the airfoil class based on the PARSEC parameters. Firstly, clustering techniques were used to identify airfoil classes based on properties such as lift, drag and volume. Several clustering techniques were used, including K-Means and Gaussian Mixture Models (GMMs). Next, an artificial neural network will be used to implement a technique such as logistic regression to classify airfoils into classes. The PARSEC parameters will act as the features.
@@ -35,9 +31,15 @@ Both supervised and unsupervised learning will be used to classify airfoils base
 
 Several clustering algorithms were implemented. The data consists of three features: the lift coefficient (Cl), the drag coefficient (Cd) and the volume. A visualization of the data is shown below. 
 
-![](Images/airfoil_data.png?raw=true "Visualization of airfoil data")
+<figure>
+<center><img src="Images/airfoil_data.png"></center>
+<center><figcaption>Figure 3. Visualization of airfoil data</figcaption></center>
+</figure>
 
-*Figure 3. Visualization of airfoil data*
+
+# ![](Images/airfoil_data.png?raw=true "Visualization of airfoil data")
+
+# *Figure 3. Visualization of airfoil data*
 
 There are several things that can be noted about the training data: 
 1. Most of the data is not clearly separated in easily identifiable clusters. Therefore, cluster assignments cannot be made through visual inspection.
