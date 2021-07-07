@@ -77,23 +77,46 @@ K-Means was also used to cluster the airfoils.
 We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data.
 <figure>
 <center><img src="Images/kmeansclustereddata.png"></center>
-<center><figcaption>Figure 4. GMM with six clusters</figcaption></center>
+<center><figcaption>Figure 7. K-Means Implemented for 6 Clusters</figcaption></center>
 </figure>
-Label: K-Means Implemented for 6 Clusters
+
+
+
+
+We visualize the labeled data trained using K-Means for 6 clusters/components. 
+<figure>
+<center><img src="Images/cdcl.png"></center>
+<center><figcaption>Figure 8.2D Plot to Visualize Labelled Data</figcaption></center>
+</figure>
+<figure>
+<center><img src="Images/volcl.png"></center>
+<center><figcaption>Figure 9. 2D Plot to Visualize Labelled Data</figcaption></center>
+</figure>
+<figure>
+<center><img src="Images/volcd.png"></center>
+<center><figcaption>Figure 10. 2D Plot to Visualize Labelled Data</figcaption></center>
+</figure>
 
 From the figures above, it is evident that the airfoils are indeed clustered based on lift coefficient values. Additionally, the K-Means algorithm is able to identify airfoils with lift coefficients of zero, (these are our symmetric airfoils, which have a theoretical lift coefficient value of zero) and categorize them into a single group. This is indeed comparable to the approach taken by the GMM implementation as well. 
 
 Following this, we analyze the data using an Expectation Maximization framework. This entails randomly selecting cluters, assigning labels based on the nearest clusters (accomplished using pairwise distance arithmetic), subsequently determining new centers and finally ensuring that there is convergence. This approach is also able to categorize airfoils with zero lift coefficients into a single group. 
 
-INSERT E-M DATA RESULTS HERE
+<figure>
+<center><img src="Images/EMResults.png"></center>
+<center><figcaption>Figure 11. Clustering Results obtained using Expectation Maximization</figcaption></center>
 
 Finally, we analyze the data using Spectral Clustering. In essence, this technique leverages nearest-neighbor graphs to cluster unorganized data into groups based on common features. Below we provide a graph of the results obtained using spectral clustering. 
 
-INSERT SPECTRAL CLUSTERING DATA HERE
+<figure>
+<center><img src="Images/spectralclustering.png"></center>
+<center><figcaption>Figure 12. Clustering Results obtained using Spectral Clustering</figcaption></center>
 
 Finally, we provide the folloiwng 3D plot to visualize the labelled data. 
 
-PROVIDE 3D PLOT HERE
+<figure>
+<center><img src="Images/3Ddata.png"></center>
+<center><figcaption>Figure 13. 3D Plot to Visualize Labelled Data </figcaption></center>
+
 
 ### Airfoil Classification
 
