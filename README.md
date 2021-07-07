@@ -43,9 +43,10 @@ There are several things that can be noted about the training data:
 
 First, GMM models were trained on the data with a varying number of clusters/components. A visualization of the result using six clusters is shown below. 
 
-![](Images/gmm_six_clusters.png?raw=true)
-
-*Figure 4. GMM with six clusters*
+<figure>
+<center><img src="Images/gmm_six_clusters.png"></center>
+<center><figcaption>Figure 4. GMM with six clusters</figcaption></center>
+</figure>
 
 We can see that the airfoils are clustered mainly based on their Cl values. The GMM also identifies most of the symmetric airfoils and places them within a separate cluster.
 
@@ -53,17 +54,19 @@ The GMM models were evaluated using two metrics:
 1. The silhouette coefficient
 2. The Davies-Bouldin index
 
-The results for a number of clusters varying from 2 to 12 can be seen below. 
+The results for a number of clusters varying from 2 to 12 can be seen below.
 
-![](Images/gmm_sil_coeff.png?raw=true)
-
-*Figure 5. Silhouette coefficient for GMM models*
+<figure>
+<center><img src="Images/gmm_sil_coeff.png"></center>
+<center><figcaption>Figure 5. Silhouette coefficient for GMM models</figcaption></center>
+</figure>
 
 Ideally, the silhouette coefficient should be as close to 1 as possible. The best value is obtained with only 2 clusters, after which there is a steep drop. The next best value is obtained at 7 clusters.
 
-![](Images/gmm_dbindex.png?raw=true)
-
-*Figure 6. Davies-Bouldin Index for GMM models*
+<figure>
+<center><img src="Images/gmm_dbindex.png.png"></center>
+<center><figcaption>Figure 6. Davies-Bouldin Index for GMM models</figcaption></center>
+</figure>
 
 The Davies-Bouldin index should ideally be as low as possible. Once again, the best value is obtained with just 2 clusters, with the next best value at 7 clusters.
 
