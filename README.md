@@ -20,6 +20,7 @@ The final data pre-processing is to convert the airfoil dataset using discrete s
 
 ![](Images/best_parameterization.png)
 ![](Images/worst_parameterization.png)
+
 *Figure 2. Airfoil parameterization results*
 
 ## IV. Methods
