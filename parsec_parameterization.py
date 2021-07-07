@@ -235,20 +235,18 @@ y_params_worst = params_to_coord(y_params_worst)
 y_data_best = y_coord_data[ind_best,:]
 y_data_worst = y_coord_data[ind_worst,:]
 
-plt.figure()
-plt.plot(x_coord_data,y_params_best, label='parameterized airfoil')
-plt.plot(x_coord_data,y_data_best, label='actual airfoil')
-plt.legend()
-plt.title('Best Parameterization')
-ax = plt.gca()
-ax.set_aspect(5) # manually configured
-
-plt.figure()
-plt.plot(x_coord_data,y_params_worst, label='parameterized airfoil')
-plt.plot(x_coord_data,y_data_worst, label='actual airfoil')
-plt.legend()
-plt.title('Worst Parameterization')
-ax = plt.gca()
-ax.set_aspect(2) # manually configured
-
+fig,ax = plt.subplots(2)
+ax[0].plot(x_coord_data,y_params_best, label='parameterized airfoil')
+ax[0].plot(x_coord_data,y_data_best, label='actual airfoil')
+ax[0].legend()
+ax[0].set_title('Best Parameterization')
+ax[0].set_aspect(5) # hard coded
+ax[1].plot(x_coord_data,y_params_worst, label='parameterized airfoil')
+ax[1].plot(x_coord_data,y_data_worst, label='parameterized airfoil')
+ax[1].legend()
+ax[1].set_title('Worst Parameterization')
+ax[1].set_aspect(2) # hard coded
+plt.tight_layout()
 plt.show()
+
+
