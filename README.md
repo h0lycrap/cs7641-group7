@@ -6,18 +6,18 @@ Although Computational Fluid Dynamics (CFD) surpasses experimental techniques in
 The problem at hand is presented as follows; given a dataset with airfoil parameters (features) and corresponding aerodynamic performances (labels), clustering will be conducted, and neural networks will be trained to predict sufficiently accurate aerodynamic properties of interest. The objective at hand is to determine an ideal clustering method as well as an optimal number of clusters for the cluster analysis. Additionally, we seek to determine an architecture, along with associated weights, which properly models the given network.
 
 ## III. Data Collection and Pre-Processing
-The airfoil shapes has be collected from the UIUC Airfoil Database, which contains the coordinates for approximately 1600 airfoils. Each Arifoil data is stored in a text file containing the name of the airfoil and the discrete x and y shape coordinates. The airfoil data has then be ran through the XFOIL software [5], a fast flow solver that takes as an input the discrete airfoil shape coordinates, to obtain aerodynamic properties such as lift and drag coefficients, as well as other quantities of interest. These aerodynamic properties will act as the features for clustering the airfoils. 
+The airfoil shapes were collected from the UIUC Airfoil Database, which contains the coordinates for approximately 1600 airfoils. The data for each airfoil is stored in a text file containing the name of the airfoil and the discrete x and y shape coordinates. The airfoil data has then been run through the XFOIL software [5], a fast flow solver that takes as an input the discrete airfoil shape coordinates, to obtain aerodynamic properties such as lift and drag coefficients, as well as other quantities of interest. These aerodynamic properties will act as the features for clustering the airfoils. 
 
-Out of the 1600 initial airfoils in the dataset, only 600 were able to make XFoil converge. Indeed, XFoil is very sensitive to any shape discontinuity and the order of the shape coordinates in the shape file. The number of shape coordinates, and the order of the shape coordinates in each element of the dataset is inconsistent. Some of the airfoils in the dataset do not contain enoough coordinate points to make XFoil converge and find the aerodynamic coefficients. In other words, the data cleaning was performed automatically by XFoil keeping only the airfoils with enough information to extract the data.
+Out of the 1600 initial airfoils in the dataset, only 600 were able to make XFoil converge. Indeed, XFoil is very sensitive to any shape discontinuity and the order of the shape coordinates in the shape file. The number of shape coordinates, and the order of the shape coordinates in each element of the dataset is inconsistent. Some of the airfoils in the dataset do not contain enoough coordinate points to make XFoil converge and compute the aerodynamic coefficients. In other words, the data cleaning was performed automatically by XFoil, keeping only the airfoils with enough information to extract relevant data.
 
-As mentioned previously, the number of shape coordinates for each airfoil file is not consistent. In average, each file contains about 20 discrete points which were not extracted at the same x coordinate. Moreover, the discrete shape parameterization can lead to poor results when applied to a machine learning framework or an optimization process as any small change in the discrete shape coordinates can lead to a degenerated shape that does not correspond to a feasible airfoil shape. The goal of the data preprocessing for this project is to reduce the dimensionality of the dataset, make it homogeneous, readable and practicalfor any machine learning framework. There exist multiple methods to perform this such as changing the shape parameterization technique, such as using Bezier curves or the NACA 4-digit method. One of the methods that has proven to be effective in terms of representing airfoil shapes is the PARSEC method that only contains 11 shape parameters, reducing the dimensionality in half. Additionaly, the trailing edge thickness and location is assumed to be 0, which further reduces dimension to 9. An illustration of the PARSEC parameterization is shown in the Figure 1[1].
+As mentioned previously, the number of shape coordinates for each airfoil file is not consistent. In average, each file contains about 20 discrete points which were not extracted at the same x coordinate. Moreover, the discrete shape parameterization can lead to poor results when applied to a machine learning framework or an optimization process, as any small change in the discrete shape coordinates can lead to a degenerated shape that does not correspond to a feasible airfoil shape. The goal of the data preprocessing for this project is to reduce the dimensionality of the dataset, make it homogeneous, readable and practical for any machine learning framework. There exist multiple methods to perform this, such as changing the shape parameterization technique, using Bezier curves or the NACA 4-digit method. One of the methods that has proven to be effective in terms of representing airfoil shapes is the PARSEC method that only contains 11 shape parameters, reducing the dimensionality in half. Additionaly, the trailing edge thickness and location is assumed to be 0, which further reduces dimensions to 9. An illustration of the PARSEC parameterization is shown in the Figure 1[1].
 
 <figure>
 <center><img src="Images/parsec_parameters.PNG"></center>
 <center><figcaption>Figure 1.Visualization of PARSEC parameters</figcaption></center>
 </figure>
 
-The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift and drag coefficients as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil resembles the actual airfoil. 
+The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift coefficient, drag coefficient and voume as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil resembles the actual airfoil. 
 
 <figure>
 <center><img src="Images/airfoil_parameterization.png"></center>
@@ -74,12 +74,13 @@ The GMM models were trained several times. The same general trend was observed f
 
 K-Means was also used to cluster the airfoils.
 
-We leverage K-Means clustering on the data usin six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data. 
+We leverage K-Means clustering on the data usign six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data.
+
 INSERT THE CLUSTERED DATA HERE
 
 Label: K-Means Implemented for 6 Clusters
 
-From the figures above, it is evident that the airfoils are indeed clustered based on lift coefficient values. Additionally, the K-Means algorithm is able to identify airfoils with lift coefficients of zero, (these are indeed our symmetric airfoils, which have a theoretical lift coefficient value of zero) and categorize them into a single group. This is indeed comparable to the approach taken by the GMM implementation as well. 
+From the figures above, it is evident that the airfoils are indeed clustered based on lift coefficient values. Additionally, the K-Means algorithm is able to identify airfoils with lift coefficients of zero, (these are our symmetric airfoils, which have a theoretical lift coefficient value of zero) and categorize them into a single group. This is indeed comparable to the approach taken by the GMM implementation as well. 
 
 Following this, we analyze the data using an Expectation Maximization framework. This entails randomly selecting cluters, assigning labels based on the nearest clusters (accomplished using pairwise distance arithmetic), subsequently determining new centers and finally ensuring that there is convergence. This approach is also able to categorize airfoils with zero lift coefficients into a single group. 
 
@@ -89,10 +90,10 @@ Finally, we analyze the data using Spectral Clustering. In essence, this techniq
 
 INSERT SPECTRAL CLUSTERING DATA HERE
 
-
 Finally, we provide the folloiwng 3D plot to visualize the labelled data. 
 
-PROVIDE 3D PLOT JERE
+PROVIDE 3D PLOT HERE
+
 ### Airfoil Classification
 
 Based on the results from the clustering, all of the training airfoils will be labelled with the appropriate cluster assignment. These act as the labels for classification, while the PARSEC parameters act as the features.
