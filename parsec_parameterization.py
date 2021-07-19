@@ -203,6 +203,7 @@ def penalty(opt_params,opt_ind):
 
 # Main code
 y_coord_data,x_coord_data,airfoil_label = read_data_csv()
+airfoil_label = airfoil_label[1:,np.newaxis]
 r,_ = y_coord_data.shape
 params_0 = np.zeros(9) + 0.05
 
@@ -247,4 +248,10 @@ ax[1].legend()
 ax[1].set_title('Worst Parameterization')
 ax[1].set_aspect(2) # hard coded
 plt.tight_layout()
+
+# save file
+new_data = np.hstack((airfoil_label,opt_params))
+path_output = Path(__file__).parent.joinpath('PARAMS_tmp.txt')
+np.savetxt(path_output,new_data,fmt='%s')
+
 plt.show()
