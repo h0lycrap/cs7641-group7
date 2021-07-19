@@ -2,6 +2,7 @@
 
 ## I. Introduction
 Although Computational Fluid Dynamics (CFD) surpasses experimental techniques in terms of time, cost and overall simplicity (this is attributed to the various complexities associated with the experimental setup), it is a nontrivial technique which necessitates significant amounts of computational cost to obtain accurate results (i.e. results comparable to those obtained using experimentation). Such factors prove to be sufficiently problematic during iterative design procedures. Dimensionality is one such issue associated with CFD. Though dimensionality may be addressed through altering coordinates from Cartesian to PARSEC parameters [1], the resulting shape may not be optimal. In particular, obtaining an optimal airfoil shape for given flight conditions is an arduous task. Such an optimization problem incorporates many factors, often times involving latent variables in the process, and may even lead itself to a multidisciplinary design optimization (MDO) problem. To this end, Machine Learning presents itself as the hero in disguise; we may leverage learning to curtail the time necessary to ascertain the aforementioned optimal airfoil properties. [2][3][4]
+
 ## II. Problem Statement 
 The problem at hand is presented as follows; given a dataset with airfoil parameters (features) and corresponding aerodynamic performances (labels), clustering will be conducted, and neural networks will be trained to predict sufficiently accurate aerodynamic properties of interest. The objective at hand is to determine an ideal clustering method as well as an optimal number of clusters for the cluster analysis. Additionally, we seek to determine an architecture, along with associated weights, which properly models the given network.
 
@@ -17,7 +18,7 @@ As mentioned previously, the number of shape coordinates for each airfoil file i
 <center><figcaption>Figure 1.Visualization of PARSEC parameters</figcaption></center>
 </figure>
 
-The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 11 PARSEC parameters and their lift coefficient, drag coefficient and voume as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil resembles the actual airfoil. 
+The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 9 PARSEC parameters and their lift coefficient, drag coefficient and voume as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil quite resembles the actual airfoil. 
 
 <figure>
 <center><img src="Images/airfoil_parameterization.png"></center>
@@ -74,25 +75,41 @@ The GMM models were trained several times. The same general trend was observed f
 
 K-Means was also used to cluster the airfoils.
 
-We leverage K-Means clustering on the data usign six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data.
+We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data.
+<figure>
+<center><img src="Images/kmeansclustereddata.png"></center>
+<center><figcaption>Figure 7. K-Means Implemented for 6 Clusters</figcaption></center>
+</figure>
 
-INSERT THE CLUSTERED DATA HERE
-
-Label: K-Means Implemented for 6 Clusters
+We visualize the labeled data trained using K-Means for 6 clusters/components. 
+<figure>
+<center><img src="Images/2DVisualizationCombined.png"></center>
+<center><figcaption>Figure 8. 2D Plot to Visualize Labelled Data</figcaption></center>
+</figure>
 
 From the figures above, it is evident that the airfoils are indeed clustered based on lift coefficient values. Additionally, the K-Means algorithm is able to identify airfoils with lift coefficients of zero, (these are our symmetric airfoils, which have a theoretical lift coefficient value of zero) and categorize them into a single group. This is indeed comparable to the approach taken by the GMM implementation as well. 
 
 Following this, we analyze the data using an Expectation Maximization framework. This entails randomly selecting cluters, assigning labels based on the nearest clusters (accomplished using pairwise distance arithmetic), subsequently determining new centers and finally ensuring that there is convergence. This approach is also able to categorize airfoils with zero lift coefficients into a single group. 
 
-INSERT E-M DATA RESULTS HERE
+<figure>
+<center><img src="Images/EMResults.png"></center>
+<center><figcaption>Figure 9. Clustering Results obtained using Expectation Maximization</figcaption></center>
+</figure>
 
 Finally, we analyze the data using Spectral Clustering. In essence, this technique leverages nearest-neighbor graphs to cluster unorganized data into groups based on common features. Below we provide a graph of the results obtained using spectral clustering. 
 
-INSERT SPECTRAL CLUSTERING DATA HERE
+<figure>
+<center><img src="Images/spectralclustering.png"></center>
+<center><figcaption>Figure 10. Clustering Results obtained using Spectral Clustering</figcaption></center>
+</figure>
 
 Finally, we provide the folloiwng 3D plot to visualize the labelled data. 
 
-PROVIDE 3D PLOT HERE
+<figure>
+<center><img src="Images/3Ddata.png"></center>
+<center><figcaption>Figure 11. 3D Plot to Visualize Labelled Data </figcaption></center>
+</figure>
+
 
 ### Airfoil Classification
 
