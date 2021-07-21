@@ -48,7 +48,11 @@ def pcoef(
                  ])
     
     # Solve system of linear equations
-    X = np.linalg.solve(A,B) 
+    try:
+        X = np.linalg.solve(A,B)
+    except:
+        X = np.linalg.solve(A+(1e-12*np.eye(5)),B)
+
 
     # Gather all coefficients
     coef[1:6] = X[0:5,0]
@@ -215,8 +219,10 @@ t1 = time()
 
 for i in range(r):
     print(str(i+1)+'/'+str(r))
-    bnds =((1e-6,np.inf),(1e-6,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(1e-6,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(-np.inf,np.inf))
-    res = minimize(penalty, params_0, args=(i), tol=1e-6, method = 'SLSQP', options={'maxiter': 5000}, bounds=bnds)
+    #bnds =((1e-6,np.inf),(1e-6,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(1e-6,np.inf),(-np.inf,np.inf),(-np.inf,np.inf),(-np.inf,np.inf))
+    #       rle,      x_pre,   y_pre , d2ydx2_pre, th_pre,   x_suc,   y_suc,  d2ydx2_suc, th_suc
+    bnds =((1e-6,10),(1e-6,10),(-10,10),(-100,100),(-75,75),(1e-6,10),(-10,10),(-100,100),(-75,75))
+    res = minimize(penalty, params_0, args=(i), tol=1e-8, options={'maxiter': 5000}, bounds=bnds)
     if res.success == False:
         print("Optimization Failed")
     opt_params[i,0:9] = np.array(res.x)
