@@ -122,7 +122,7 @@ For training the second model, 500 data points are used. Rest of the data is res
 (Placeholder for the results and discussion for clustering)
 
 
-Following tables summerizes two best models for the neurla network
+Following tables summerizes two best models for the neural network.
 
 (Placeholder for Gabriel's model)
 
@@ -138,8 +138,7 @@ Following tables summerizes two best models for the neurla network
 
 
 (Paragraph about the Gabriel's model)
-
-The model is trained using batch size of 125 and epoch of 1000. During hyperparameter tuning, it is found that any network with more than 5 layers with 30 neurons can reach accuracy as high as 90%. However, using 10-fold cross validation, it is shown that such complex model is overfitting. Therefore, L2 regularization with regularization constant of 1.5e-3 is done to all the hidden layers. To find the optimal structure, the number of hidden layers and the number of neurons are varied. Change in batch size and epoch does not seems to improve the model so these are not changed. After regularization and hyperparameter tuning, the accuracy fell to approximately 65% but overfitting does not occur. Using the test set, the accuracy is also about 65%. 
+During hyperparameter tuning, it is found that any network with more than 5 layers with 30 neurons can reach accuracy as high as 90%. However, using 10-fold cross validation, it is shown that such complex model is overfitting. Therefore, L2 regularization with regularization constant of 1.5e-3 is done to all the hidden layers. To find the optimal structure, the number of hidden layers and the number of neurons are varied. Change in batch size and epoch does not seems to improve the model so these are not changed. After regularization and hyperparameter tuning, the accuracy fell to approximately 65% but overfitting does not occur. Using the test set, the accuracy is also about 65%. Such low accuracy may be due to continuity in the range of the da. As shown in the figures above, there are data locate in the vicinity of neighboring clusters, which may be problematic for training. 
 
 <figure>
 <center><img src="Images/model_billy.png" height="45%"></center>
@@ -149,7 +148,7 @@ The model is trained using batch size of 125 and epoch of 1000. During hyperpara
 
 ## VI. Conclusions
 
-This project will enable the creation of a low-runtime model that maps an airfoil shape to its aerodynamic performance. Ideally, the predictions made should be comparable to those made by a software such as XFOIL. In turn, this model could be used within a larger project relating to aerodynamic shape optimization. 
+This project aims enable the creation of a low-runtime model that maps an airfoil shape to its aerodynamic performance. Ideally, the predictions made should be comparable to those made by a software such as XFOIL. In turn, this model could be used within a larger project relating to aerodynamic shape optimization. 
 
 ## Sources
 1. Sobieczky, H.: Parametric Airfoils and Wings, Notes on Numerical Fluid Mechanics, edited by K. Fujii and G.S. Dulikravich, Vol. 68, Vieweg Verlag, 1998, pp. 71-88
