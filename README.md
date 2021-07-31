@@ -112,9 +112,32 @@ Finally, we provide the folloiwng 3D plot to visualize the labelled data.
 
 After evaluating the results from the clustering, we decided to use the cluster assignments determined by K-Means. Ideally, we would like to classify a test airfoil into a certain range of Cl/Cd/volume. The K-Means clustering results in the simplest division of the training data, allowing us to easily map each cluster top a range of Cl values. On the other hand, the clustering from GMM, for instance, is much more complex and it is not easy to readily map each cluster to a range of values.
 
-### Airfoil Classification
+### Airfoil Classification Using Neural Network
 
-Based on the results from the clustering, all of the training airfoils will be labelled with the appropriate cluster assignment. These act as the labels for classification, while the PARSEC parameters act as the features.
+Based on the results from the clustering, all of the training airfoils will be labelled with the appropriate cluster assignment from KMM. These act as the labels for classification, while the PARSEC parameters act as the features. The output of the network is vector with 6 elements which is one-hot encoding of different clusters. Following tables summerizes two best models.
+
+(Placeholder for Gabriel's model)
+
+|Type of layer | Number of Neurons | Activation function |
+|--------------|-------------------|---------------------|
+|Dense         |9                  | Tanh                |
+|Dense         |12                 | Tanh                |
+|Dense         |18                 | Tanh                |
+|Dense         |24                 | Tanh                |
+|Dense         |24                 | Tanh                |
+|Dense         |18                 | Tanh                |
+|Dense (output)|6                  | Softmax             |
+
+
+(Paragraph about the Gabriel's model)
+
+Training on 1000 epochs, the accuracy using the second model is high as 90%. However, using 10-fold cross validation, it is shown that the model is overfitting. Therefore, L2 regularization with regularization constant of 1.5e-3 is done to all the hidden layers. After regularization, the accuracy fell to approximately 70% but overfitting does not occur.
+
+<figure>
+<center><img src="Images/model_billy.png" height="60%"></center>
+<center><figcaption>Figure 13. Accuracy versus epoch for the second model </figcaption></center>
+</figure>
+
 
 ## V. Results and Discussion
 This project will enable the creation of a low-runtime model that maps an airfoil shape to its aerodynamic performance. Ideally, the predictions made should be comparable to those made by a software such as XFOIL. In turn, this model could be used within a larger project relating to aerodynamic shape optimization. 
