@@ -118,7 +118,6 @@ Based on the results from the clustering, all of the training airfoils will be l
 
 (Placeholder for Gabriel's model)
 
-Table I. Summary of the second model
 |Type of layer | Number of Neurons | Activation function |
 |--------------|-------------------|---------------------|
 |Dense         |9                  | Tanh                |
@@ -135,7 +134,7 @@ Table I. Summary of the second model
 Training on 1000 epochs, the accuracy using the second model is high as 90%. However, using 10-fold cross validation, it is shown that the model is overfitting. Therefore, L2 regularization with regularization constant of 1.5e-3 is done to all the hidden layers. After regularization, the accuracy fell to approximately 70% but overfitting does not occur.
 
 <figure>
-<center><img src="Images/model_billy.png", height=75%></center>
+<center><img src="Images/model_billy.png" height=75%></center>
 <center><figcaption>Figure 11. Accuracy versus epoch for the second model </figcaption></center>
 </figure>
 
