@@ -42,6 +42,19 @@ There are several things that can be noted about the training data:
 2. There is one identifiable pattern in the data: several airfoils have a lift coefficient (Cl) of zero. These airfoils are symmetric. The data was captured at an angle of attack of zero, and in this case, the Cl for symmetric airfoils is also zero.
 3. We do not have access to any ground truth data that clearly associates each airfoil with a particular cluster or class. Typically, different clustering algorithms would be compared based on their performance with respect to some ground truth, but since it is not available, it is not easy to compare clustering techniques directly. Therefore, we have separately evaluated each technique used and contrasted the results, rather than evaluating their performance relative to each other.
 
+Three sperate techniques were used for the clustering: a Gaussian Mixture Model (GMM), the K-Means algorithm, and spectral clustering. Results from each method are discussed in the next section. After comparing the results, we decided to use the cluster assignments from K-Means, as discussed in the next section.
+
+### Airfoil Classification Using Neural Network
+
+Based on the results from the clustering, all of the training airfoils were labelled with the appropriate cluster assignment from K-Means. These act as the labels for classification, while the PARSEC parameters act as the features. The output of the network is vector with 6 elements which is one-hot encoding of different clusters. 
+
+For training the second model, 500 data points are used. Rest of the data is reserved for the testing.
+
+[MORE EXPLANATION ON NN ARCHITECTURES]
+
+## V. Results and Discussion
+
+### Clustering
 First, GMM models were trained on the data with a varying number of clusters/components. A visualization of the result using six clusters is shown below. 
 
 <figure>
@@ -96,7 +109,7 @@ Following this, we analyze the data using an Expectation Maximization framework.
 <center><figcaption>Figure 9. Clustering Results obtained using Expectation Maximization</figcaption></center>
 </figure>
 
-Finally, we analyze the data using Spectral Clustering. In essence, this technique leverages nearest-neighbor graphs to cluster unorganized data into groups based on common features. In essence, spectral clustering facilitates formulation of a graph depicting the similarities (and dissimilarities thereof) between our datapoints. Spectral clustering may be implemented using simple linear algebra toolboxes, and is ofterntimes computationally superior to K-Means [WILL INSERT A SOURCE HERE TO VALIDATE CLAIM]. In eseence, sFirst and foremost, we begin by formulating a graph depicting the relationships (in this case, similarities and dissimilarities) between datapoints. he spectral clustering algorithm extends the vertices of aforementioned graph into a lower-dimensional space by leveraging linear algebra methodologies. To elaborate, once this graph is formulated, we construct the associated Laplacian matrix, which is simply a matrix representation of our graph [will cite a source here]. Following this, we may proceed to obtain the eigenvectors of said Laplacian matrix. Then, upon implementing K-Means, we conclude the clustering procedure.  
+Finally, we analyze the data using Spectral Clustering. In essence, this technique leverages nearest-neighbor graphs to cluster unorganized data into groups based on common features. In essence, spectral clustering facilitates formulation of a graph depicting the similarities (and dissimilarities thereof) between our datapoints. Spectral clustering may be implemented using simple linear algebra toolboxes, and is ofterntimes computationally superior to K-Means [WILL INSERT A SOURCE HERE TO VALIDATE CLAIM]. In essence, first and foremost, we begin by formulating a graph depicting the relationships (in this case, similarities and dissimilarities) between datapoints. he spectral clustering algorithm extends the vertices of aforementioned graph into a lower-dimensional space by leveraging linear algebra methodologies. To elaborate, once this graph is formulated, we construct the associated Laplacian matrix, which is simply a matrix representation of our graph [will cite a source here]. Following this, we may proceed to obtain the eigenvectors of said Laplacian matrix. Then, upon implementing K-Means, we conclude the clustering procedure.  
 
 Below we provide a graph of the results obtained using spectral clustering. 
 
@@ -114,16 +127,7 @@ Finally, we provide the folloiwng 3D plot to visualize the labelled data.
 
 After evaluating the results from the clustering, we decided to use the cluster assignments determined by K-Means. Ideally, we would like to classify a test airfoil into a certain range of Cl/Cd/volume. The K-Means clustering results in the simplest division of the training data, allowing us to easily map each cluster top a range of Cl values. On the other hand, the clustering from GMM, for instance, is much more complex and it is not easy to readily map each cluster to a range of values.
 
-### Airfoil Classification Using Neural Network
-
-Based on the results from the clustering, all of the training airfoils will be labelled with the appropriate cluster assignment from K-Means. These act as the labels for classification, while the PARSEC parameters act as the features. The output of the network is vector with 6 elements which is one-hot encoding of different clusters. 
-
-For training the second model, 500 data points are used. Rest of the data is reserved for the testing.
-
-## V. Results and Discussion
-(Placeholder for the results and discussion for clustering)
-
-
+### Classification
 Following tables summerizes two best models for the neural network.
 
 (Placeholder for Gabriel's model)
