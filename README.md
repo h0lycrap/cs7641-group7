@@ -46,16 +46,29 @@ Three sperate techniques were used for the clustering: a Gaussian Mixture Model 
 
 ### Airfoil Classification Using Neural Network
 
-Based on the results from the clustering, all of the training airfoils were labelled with the appropriate cluster assignment from K-Means. These act as the labels for classification, while the PARSEC parameters act as the features. The output of the network is vector with 6 elements which is one-hot encoding of different clusters. 
+Based on the results from the clustering, all of the training airfoils were labelled with the appropriate cluster assignment from K-Means. These act as the labels for classification, while the PARSEC parameters act as the features. The output of the network is a vector with 6 elements which corresponds to a one-hot encoding of the 6 clusters. For training the second model, 500 data points are used. The rest of the data is reserved for the testing.
 
-For training the second model, 500 data points are used. Rest of the data is reserved for the testing.
+A simple Artificial Neural Network (ANN) model was used for the classification. After experimenting with several different architectures for the model, the two that gave the best results were selected for comparison. The following tables summarize the two best models for the neural network.
 
-[MORE EXPLANATION ON NN ARCHITECTURES]
+[PLACEHOLDER FOR GABRIEL'S MODEL]
+
+
+|Type of layer  | Number of Neurons | Activation function |
+|---------------|-------------------|---------------------|
+|Dense          |12                 | Tanh                |
+|Dense          |12                 | Tanh                |
+|Dense          |18                 | Tanh                |
+|Dense          |24                 | Tanh                |
+|Dense          |24                 | Tanh                |
+|Dense          |18                 | Tanh                |
+|Dense (output) |6                  | Softmax             |
+
+In the next section, more details are provided on the tuning of the two models and the results from the cross-validation and testing. 
 
 ## V. Results and Discussion
 
 ### Clustering
-First, GMM models were trained on the data with a varying number of clusters/components. A visualization of the result using six clusters is shown below. 
+First, GMM models were trained on the data with a varying number of clusters/components. A GMM is a probabilistic clustering model that utilizes a mix of several Gaussian distributions. Each data point has an associated probability of belonging to a certain cluster. A visualization of the result using six clusters is shown below. 
 
 <figure>
 <center><img src="Images/gmm_six_clusters.png"></center>
@@ -86,9 +99,7 @@ The Davies-Bouldin index should ideally be as low as possible. Once again, the b
 
 The GMM models were trained several times. The same general trend was observed for the evaluation metrics, though there were slight differences in the optimal number of clusters. If the models are evaluated based on the metrics alone, it suggests that 2 clusters are ideal. However, if only 2 clusters are used, the model simply splits the airfoils evenly near the mean of the Cl values. On the other hand, if a greater number of clusters are used, the model may identify patterns within the data. For example, the similarity in the symmetric airfoils is identified and the GMM places them in a single cluster. Therefore, we selected 6-8 clusters as the optimal number based on the results from the GMMs.
 
-K-Means was also used to cluster the airfoils.
-
-We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. In essence, K-Means is an unsupervised learning agorithm which clusters the data into a "K number of distinct partitions. The superiority of the data clustering is contingent upon the similarity of the data within the clusters, in lieu of the similarity between the various clusters themselves. To implement K-Means, we must first arbitrarily select a value of K and an inital centroid for a given cluster. Following this, we assign each data point to the centroid of closest proximity. Afterwards, we update the centroids to be the central component of their respective clusters. The two afroementioned steps are repeated until convergence is achieved. The optimization objective for this algorithm is to minimize the the total sum of squared errors (SSE) objective function. The total SSE additionally facilitates determining the optimal value of K. In plotting the total SSE, we determine the optimal number of clusters; this is the point at which the total SSE converges, and where the trend beginsto show an infinitesimal decrease was we increase the number of clusters. Visually, this corresponds to an "elbow" in the raph and this approach is conequently named the Elbow Method. 
+K-Means was also used to cluster the airfoils. We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. In essence, K-Means is an unsupervised learning agorithm which clusters the data into a K number of distinct partitions. The superiority of the data clustering is contingent upon the similarity of the data within the clusters, as compared to the similarity between the various clusters themselves. To implement K-Means, we must first arbitrarily select a value of K and an inital centroid for a given cluster. Following this, we assign each data point to the centroid of closest proximity. Afterwards, we update the centroids to be the central component of their respective clusters. The two afroementioned steps are repeated until convergence is achieved. The optimization objective for this algorithm is to minimize the the total sum of squared errors (SSE) objective function. The total SSE additionally facilitates determining the optimal value of K. In plotting the total SSE, we determine the optimal number of clusters; this is the point at which the total SSE converges, and where the trend beginsto show an infinitesimal decrease was we increase the number of clusters. Visually, this corresponds to an "elbow" in the graph and this approach is consequently named the Elbow Method. 
 Below we provide results to facilitate visualizing the labelled data.
 <figure>
 <center><img src="Images/kmeansclustereddata.png"></center>
@@ -110,7 +121,7 @@ Following this, we analyze the data using an Expectation Maximization framework.
 <center><figcaption>Figure 9. Clustering Results obtained using Expectation Maximization</figcaption></center>
 </figure>
 
-Finally, we analyze the data using Spectral Clustering. In essence, this technique leverages nearest-neighbor graphs to cluster unorganized data into groups based on common features. In essence, spectral clustering facilitates formulation of a graph depicting the similarities (and dissimilarities thereof) between our datapoints. Spectral clustering may be implemented using simple linear algebra toolboxes, and is ofterntimes computationally superior to K-Means [WILL INSERT A SOURCE HERE TO VALIDATE CLAIM]. In essence, first and foremost, we begin by formulating a graph depicting the relationships (in this case, similarities and dissimilarities) between datapoints. he spectral clustering algorithm extends the vertices of aforementioned graph into a lower-dimensional space by leveraging linear algebra methodologies. To elaborate, once this graph is formulated, we construct the associated Laplacian matrix, which is simply a matrix representation of our graph [will cite a source here]. Following this, we may proceed to obtain the eigenvectors of said Laplacian matrix. Then, upon implementing K-Means, we conclude the clustering procedure.  
+Finally, we analyze the data using Spectral Clustering. In essence, this technique leverages nearest-neighbor graphs to cluster unorganized data into groups based on common features. In essence, spectral clustering facilitates the formulation of a graph depicting the similarities (and dissimilarities thereof) between our datapoints. Spectral clustering may be implemented using simple linear algebra toolboxes, and is ofterntimes computationally superior to K-Means [WILL INSERT A SOURCE HERE TO VALIDATE CLAIM]. In essence, first and foremost, we begin by formulating a graph depicting the relationships (in this case, similarities and dissimilarities) between datapoints. The spectral clustering algorithm extends the vertices of aforementioned graph into a lower-dimensional space by leveraging linear algebra methodologies. To elaborate, once this graph is formulated, we construct the associated Laplacian matrix, which is simply a matrix representation of our graph [will cite a source here]. Following this, we may proceed to obtain the eigenvectors of said Laplacian matrix. Then, upon implementing K-Means, we conclude the clustering procedure.  
 
 Below we provide a graph of the results obtained using spectral clustering. 
 
@@ -126,36 +137,25 @@ Finally, we provide the folloiwng 3D plot to visualize the labelled data.
 <center><figcaption>Figure 11. 3D Plot to Visualize Labelled Data </figcaption></center>
 </figure>
 
-After evaluating the results from the clustering, we decided to use the cluster assignments determined by K-Means. Ideally, we would like to classify a test airfoil into a certain range of Cl/Cd/volume. The K-Means clustering results in the simplest division of the training data, allowing us to easily map each cluster top a range of Cl values. On the other hand, the clustering from GMM, for instance, is much more complex and it is not easy to readily map each cluster to a range of values.
+After evaluating the results from the clustering, we decided to use the cluster assignments determined by K-Means. Ideally, we would like to classify a test airfoil into a certain range of Cl/Cd/volume. The K-Means clustering results in the simplest division of the training data, allowing us to easily map each cluster to a range of Cl values. On the other hand, the clustering from GMM, for instance, is much more complex and it is not easy to readily map each cluster to a range of values.
 
 ### Classification
-Following tables summerizes two best models for the neural network.
+As previously mentionedm two final architectures for the classification network were chosen and compared.
 
-(Placeholder for Gabriel's model)
+[PARAGRAPH ABOUT TUNING GABRIEL'S MODEL]
 
-|Type of layer  | Number of Neurons | Activation function |
-|---------------|-------------------|---------------------|
-|Dense          |12                 | Tanh                |
-|Dense          |12                 | Tanh                |
-|Dense          |18                 | Tanh                |
-|Dense          |24                 | Tanh                |
-|Dense          |24                 | Tanh                |
-|Dense          |18                 | Tanh                |
-|Dense (output) |6                  | Softmax             |
-
-
-(Paragraph about the Gabriel's model)
-During hyperparameter tuning, it is found that any network with more than 5 layers with 30 neurons can reach accuracy as high as 90%. However, using 10-fold cross validation, it is shown that such complex model is overfitting. Therefore, L2 regularization with regularization constant of 1.5e-3 is done to all the hidden layers. To find the optimal structure, the number of hidden layers and the number of neurons are varied. Change in batch size and epoch does not seems to improve the model so these are not changed. After regularization and hyperparameter tuning, the accuracy fell to approximately 65% but overfitting does not occur. Using the test set, the accuracy is also about 65%. Such low accuracy may be due to continuity in the range of the da. As shown in the figures above, there are data locate in the vicinity of neighboring clusters, which may be problematic for training. 
+During hyperparameter tuning, it is found that any network with more than 5 layers with 30 neurons can reach accuracy as high as 90%. However, using 10-fold cross validation, it is shown that such a complex model is overfitting. Therefore, L2 regularization with a regularization constant of 1.5e-3 is applied to all the hidden layers. Changes in batch size and epoch do not seems to improve the model so these are not changed. After regularization and hyperparameter tuning, the validation accuracy was approximately 65% but overfitting does not occur. Using the test set, the accuracy is also about 65%. Such low accuracy may be due to continuity in the range of the data. Also, as shown in the figures above, there are data located in the vicinity of neighboring clusters, which may be problematic for training. 
 
 <figure>
 <center><img src="Images/model_billy.png" height="45%"></center>
 <center><figcaption>Figure 13. Accuracy versus epoch for the second model </figcaption></center>
 </figure>
 
+[PLOTS OF TEST DATA BEING CLASSIFEID INTO APPROPRIATE CLUSTERS]
 
 ## VI. Conclusions
 
-This project aims enable the creation of a low-runtime model that maps an airfoil shape to its aerodynamic performance. Ideally, the predictions made should be comparable to those made by a software such as XFOIL. In turn, this model could be used within a larger project relating to aerodynamic shape optimization. 
+This project aimed tpo enable the creation of a low-runtime model that maps an airfoil shape to its aerodynamic performance. Ideally, the predictions made should be comparable to those made by a software such as XFOIL. In turn, this model could be used within a larger project relating to aerodynamic shape optimization. 
 
 ## Sources
 1. Sobieczky, H.: Parametric Airfoils and Wings, Notes on Numerical Fluid Mechanics, edited by K. Fujii and G.S. Dulikravich, Vol. 68, Vieweg Verlag, 1998, pp. 71-88
