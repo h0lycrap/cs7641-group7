@@ -50,7 +50,14 @@ Based on the results from the clustering, all of the training airfoils were labe
 
 A simple Artificial Neural Network (ANN) model was used for the classification. After experimenting with several different architectures for the model, the two that gave the best results were selected for comparison. The following tables summarize the two best models for the neural network.
 
-[PLACEHOLDER FOR GABRIEL'S MODEL]
+|Type of layer  | Number of Neurons | Activation function |
+|---------------|-------------------|---------------------|
+|Dense          |22                 | Tanh                |
+|Dense          |44                 | Relu                |
+|Dense          |66                 | Relu                |
+|Dense          |44                 | Relu                |
+|Dense          |22                 | Relu                |
+|Dense (output) |6                  | Softmax             |
 
 
 |Type of layer  | Number of Neurons | Activation function |
