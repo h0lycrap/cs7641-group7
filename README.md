@@ -88,7 +88,8 @@ The GMM models were trained several times. The same general trend was observed f
 
 K-Means was also used to cluster the airfoils.
 
-We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. Below we provide results to facilitate visualizing the labelled data.
+We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. In essence, K-Means is an unsupervised learning agorithm which clusters the data into a "K number of distinct partitions. The superiority of the data clustering is contingent upon the similarity of the data within the clusters, in lieu of the similarity between the various clusters themselves. To implement K-Means, we must first arbitrarily select a value of K and an inital centroid for a given cluster. Following this, we assign each data point to the centroid of closest proximity. Afterwards, we update the centroids to be the central component of their respective clusters. The two afroementioned steps are repeated until convergence is achieved. The optimization objective for this algorithm is to minimize the the total sum of squared errors (SSE) objective function. The total SSE additionally facilitates determining the optimal value of K. In plotting the total SSE, we determine the optimal number of clusters; this is the point at which the total SSE converges, and where the trend beginsto show an infinitesimal decrease was we increase the number of clusters. Visually, this corresponds to an "elbow" in the raph and this approach is conequently named the Elbow Method. 
+Below we provide results to facilitate visualizing the labelled data.
 <figure>
 <center><img src="Images/kmeansclustereddata.png"></center>
 <center><figcaption>Figure 7. K-Means Implemented for 6 Clusters</figcaption></center>
