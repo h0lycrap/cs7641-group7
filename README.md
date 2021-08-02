@@ -147,11 +147,16 @@ Finally, we provide the folloiwng 3D plot to visualize the labelled data.
 After evaluating the results from the clustering, we decided to use the cluster assignments determined by K-Means. Ideally, we would like to classify a test airfoil into a certain range of Cl/Cd/volume. The K-Means clustering results in the simplest division of the training data, allowing us to easily map each cluster to a range of Cl values. On the other hand, the clustering from GMM, for instance, is much more complex and it is not easy to readily map each cluster to a range of values.
 
 ### Classification
-As previously mentionedm two final architectures for the classification network were chosen and compared.
+As previously mentionedm two final architectures for the classification network were chosen and compared. Both model were trained over 1000 epochs and using a batch size of 125. The first model uses a learning rate of 10-4 and the second one 10-3.
 
-[PARAGRAPH ABOUT TUNING GABRIEL'S MODEL]
+The training of the first model is illustrated in Figure 12, where the evolution of the accuracy of the model versus the epochs is shown. The displayed plot is the training of the tuned architecture where the learning rate and the batch size had to be adjsuted to maximize the performances of the model. This architecture reaches a 50% accuracy for the validation data. This shows that this architecture might not be suited for the task, or that the data is not signficant enough.
 
-During hyperparameter tuning, it is found that any network with more than 5 layers with 30 neurons can reach accuracy as high as 90%. However, using 10-fold cross validation, it is shown that such a complex model is overfitting. Therefore, L2 regularization with a regularization constant of 1.5e-3 is applied to all the hidden layers. Changes in batch size and epoch do not seems to improve the model so these are not changed. After regularization and hyperparameter tuning, the validation accuracy was approximately 65% but overfitting does not occur. Using the test set, the accuracy is also about 65%. Such low accuracy may be due to continuity in the range of the data. Also, as shown in the figures above, there are data located in the vicinity of neighboring clusters, which may be problematic for training. 
+<figure>
+<center><img src="Images/plot_acc_model1.png" height="45%"></center>
+<center><figcaption>Figure 12. Accuracy versus epoch for the first model </figcaption></center>
+</figure>
+
+For the second model, during hyperparameter tuning, it is found that any network with more than 5 layers with 30 neurons can reach accuracy as high as 90%. However, using 10-fold cross validation, it is shown that such a complex model is overfitting. Therefore, L2 regularization with a regularization constant of 1.5e-3 is applied to all the hidden layers. Changes in batch size and epoch do not seems to improve the model so these are not changed. After regularization and hyperparameter tuning, the validation accuracy was approximately 65% but overfitting does not occur. Using the test set, the accuracy is also about 65%. Such low accuracy may be due to continuity in the range of the data. Also, as shown in the figures above, there are data located in the vicinity of neighboring clusters, which may be problematic for training. 
 
 <figure>
 <center><img src="Images/model_billy.png" height="45%"></center>
