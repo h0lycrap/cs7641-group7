@@ -115,7 +115,7 @@ Below we provide results to facilitate visualizing the labelled data.
 
 We visualize the labeled data trained using K-Means for 6 clusters/components. 
 <figure>
-<center><img src="Images/2DVisualizationCombined.png" width="500"></center>
+<center><img src="Images/2DVisualizationCombined.png" width="650"></center>
 <center><figcaption>Figure 8. 2D Plot to Visualize Labelled Data</figcaption></center>
 </figure>
 
