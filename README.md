@@ -33,7 +33,7 @@ Both supervised and unsupervised learning will be used to classify airfoils base
 Several clustering algorithms were implemented. The data consists of three features: the lift coefficient (Cl), the drag coefficient (Cd) and the volume. A visualization of the data is shown below. 
 
 <figure>
-<center><img src="Images/airfoil_data.png" width="500"></center>
+<center><img src="Images/airfoil_data.png" width="650"></center>
 <center><figcaption>Figure 3. Visualization of airfoil data</figcaption></center>
 </figure>
 
@@ -78,7 +78,7 @@ In the next section, more details are provided on the tuning of the two models a
 First, GMM models were trained on the data with a varying number of clusters/components. A GMM is a probabilistic clustering model that utilizes a mix of several Gaussian distributions. Each data point has an associated probability of belonging to a certain cluster. A visualization of the result using six clusters is shown below. 
 
 <figure>
-<center><img src="Images/gmm_six_clusters.png" width="500"></center>
+<center><img src="Images/gmm_six_clusters.png" width="650"></center>
 <center><figcaption>Figure 4. GMM with six clusters</figcaption></center>
 </figure>
 
@@ -176,9 +176,3 @@ Ideally, the predictions made would be comparable to those made by a software su
 3. Di Angelo L., Di Stefano P., "An evolutionary geometric primitive for automatic design synthesis of functional shapes: The case of airfoils"
 4. Zhang Y., Sung W., Mavris D., Application of Convolution Neural Network to Predict Airfoil Lift Coefficient, Georgia Institute of Technology, Atlanta, Georgia, 30332
 5. Drela, M.: XFOIL: Subsonic Airfoil Development System, Massachusetts Institute of Technology. https://web.mit.edu/drela/Public/web/xfoil/ 
-
-
-
-
-
-
