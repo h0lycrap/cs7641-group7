@@ -21,7 +21,7 @@ As mentioned previously, the number of shape coordinates for each airfoil file i
 The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 9 PARSEC parameters and their lift coefficient, drag coefficient and voume as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil quite resembles the actual airfoil. 
 
 <figure>
-<center><img src="Images/airfoil_parameterization.png" width="500"></center>
+<center><img src="Images/airfoil_parameterization.png" width="600"></center>
 <center><figcaption>Figure 2. Airfoil parameterization results</figcaption></center>
 </figure>
 
@@ -33,7 +33,7 @@ Both supervised and unsupervised learning will be used to classify airfoils base
 Several clustering algorithms were implemented. The data consists of three features: the lift coefficient (Cl), the drag coefficient (Cd) and the volume. A visualization of the data is shown below. 
 
 <figure>
-<center><img src="Images/airfoil_data.png"></center>
+<center><img src="Images/airfoil_data.png" width="600"></center>
 <center><figcaption>Figure 3. Visualization of airfoil data</figcaption></center>
 </figure>
 
