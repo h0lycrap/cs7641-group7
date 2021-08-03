@@ -33,7 +33,7 @@ Both supervised and unsupervised learning will be used to classify airfoils base
 Several clustering algorithms were implemented. The data consists of three features: the lift coefficient (Cl), the drag coefficient (Cd) and the volume. A visualization of the data is shown below. 
 
 <figure>
-<center><img src="Images/airfoil_data.png" width="600"></center>
+<center><img src="Images/airfoil_data.png" width="500"></center>
 <center><figcaption>Figure 3. Visualization of airfoil data</figcaption></center>
 </figure>
 
@@ -78,7 +78,7 @@ In the next section, more details are provided on the tuning of the two models a
 First, GMM models were trained on the data with a varying number of clusters/components. A GMM is a probabilistic clustering model that utilizes a mix of several Gaussian distributions. Each data point has an associated probability of belonging to a certain cluster. A visualization of the result using six clusters is shown below. 
 
 <figure>
-<center><img src="Images/gmm_six_clusters.png"></center>
+<center><img src="Images/gmm_six_clusters.png" width="500"></center>
 <center><figcaption>Figure 4. GMM with six clusters</figcaption></center>
 </figure>
 
@@ -91,14 +91,14 @@ The GMM models were evaluated using two metrics:
 The results for a number of clusters varying from 2 to 12 can be seen below.
 
 <figure>
-<center><img src="Images/gmm_sil_coeff.png"></center>
+<center><img src="Images/gmm_sil_coeff.png" width="500"></center>
 <center><figcaption>Figure 5. Silhouette coefficient for GMM models</figcaption></center>
 </figure>
 
 Ideally, the silhouette coefficient should be as close to 1 as possible. The best value is obtained with only 2 clusters, after which there is a steep drop. The next best value is obtained at 7 clusters.
 
 <figure>
-<center><img src="Images/gmm_dbindex.png"></center>
+<center><img src="Images/gmm_dbindex.png" width="500"></center>
 <center><figcaption>Figure 6. Davies-Bouldin Index for GMM models</figcaption></center>
 </figure>
 
@@ -109,13 +109,13 @@ The GMM models were trained several times. The same general trend was observed f
 K-Means was also used to cluster the airfoils. We leverage K-Means clustering on the data using six clusters, in a similar fashion to that done using the GMM implementation. In essence, K-Means is an unsupervised learning agorithm which clusters the data into a K number of distinct partitions. The superiority of the data clustering is contingent upon the similarity of the data within the clusters, as compared to the similarity between the various clusters themselves. To implement K-Means, we must first arbitrarily select a value of K and an inital centroid for a given cluster. Following this, we assign each data point to the centroid of closest proximity. Afterwards, we update the centroids to be the central component of their respective clusters. The two afroementioned steps are repeated until convergence is achieved. The optimization objective for this algorithm is to minimize the the total sum of squared errors (SSE) objective function. The total SSE additionally facilitates determining the optimal value of K. In plotting the total SSE, we determine the optimal number of clusters; this is the point at which the total SSE converges, and where the trend beginsto show an infinitesimal decrease was we increase the number of clusters. Visually, this corresponds to an "elbow" in the graph and this approach is consequently named the Elbow Method. 
 Below we provide results to facilitate visualizing the labelled data.
 <figure>
-<center><img src="Images/kmeansclustereddata.png"></center>
+<center><img src="Images/kmeansclustereddata.png" width="500"></center>
 <center><figcaption>Figure 7. K-Means Implemented for 6 Clusters</figcaption></center>
 </figure>
 
 We visualize the labeled data trained using K-Means for 6 clusters/components. 
 <figure>
-<center><img src="Images/2DVisualizationCombined.png"></center>
+<center><img src="Images/2DVisualizationCombined.png" width="500"></center>
 <center><figcaption>Figure 8. 2D Plot to Visualize Labelled Data</figcaption></center>
 </figure>
 
@@ -124,7 +124,7 @@ From the figures above, it is evident that the airfoils are indeed clustered bas
 Following this, we analyze the data using an Expectation Maximization framework. This entails randomly selecting cluters, assigning labels based on the nearest clusters (accomplished using pairwise distance arithmetic), subsequently determining new centers and finally ensuring that there is convergence. This approach is also able to categorize airfoils with zero lift coefficients into a single group. 
 
 <figure>
-<center><img src="Images/EMResults.png"></center>
+<center><img src="Images/EMResults.png" width="500"></center>
 <center><figcaption>Figure 9. Clustering Results obtained using Expectation Maximization</figcaption></center>
 </figure>
 
@@ -133,14 +133,14 @@ Finally, we analyze the data using Spectral Clustering. In essence, this techniq
 Below we provide a graph of the results obtained using spectral clustering. 
 
 <figure>
-<center><img src="Images/spectralclustering.png"></center>
+<center><img src="Images/spectralclustering.png" width="500"></center>
 <center><figcaption>Figure 10. Clustering Results obtained using Spectral Clustering</figcaption></center>
 </figure>
 
 Finally, we provide the folloiwng 3D plot to visualize the labelled data. 
 
 <figure>
-<center><img src="Images/3Ddata.png"></center>
+<center><img src="Images/3Ddata.png" width="500"></center>
 <center><figcaption>Figure 11. 3D Plot to Visualize Labelled Data </figcaption></center>
 </figure>
 
@@ -152,18 +152,16 @@ As previously mentionedm two final architectures for the classification network 
 The training of the first model is illustrated in Figure 12, where the evolution of the accuracy of the model versus the epochs is shown. The displayed plot is the training of the tuned architecture where the learning rate and the batch size had to be adjsuted to maximize the performances of the model. This architecture reaches a 50% accuracy for the validation data. This shows that this architecture might not be suited for the task, or that the data is not signficant enough.
 
 <figure>
-<center><img src="Images/plot_acc_model1.png" height="45%"></center>
+<center><img src="Images/plot_acc_model1.png" width="500"></center>
 <center><figcaption>Figure 12. Accuracy versus epoch for the first model </figcaption></center>
 </figure>
 
 For the second model, during hyperparameter tuning, it is found that any network with more than 5 layers with 30 neurons can reach accuracy as high as 90%. However, using 10-fold cross validation, it is shown that such a complex model is overfitting. Therefore, L2 regularization with a regularization constant of 1.5e-3 is applied to all the hidden layers. Changes in batch size and epoch do not seems to improve the model so these are not changed. After regularization and hyperparameter tuning, the validation accuracy was approximately 65% but overfitting does not occur. Using the test set, the accuracy is also about 65%. Such low accuracy may be due to continuity in the range of the data. Also, as shown in the figures above, there are data located in the vicinity of neighboring clusters, which may be problematic for training. 
 
 <figure>
-<center><img src="Images/model_billy.png" height="45%"></center>
+<center><img src="Images/model_billy.png" width="500"></center>
 <center><figcaption>Figure 13. Accuracy versus epoch for the second model </figcaption></center>
 </figure>
-
-[PLOTS OF TEST DATA BEING CLASSIFEID INTO APPROPRIATE CLUSTERS]
 
 ## VI. Conclusions
 
