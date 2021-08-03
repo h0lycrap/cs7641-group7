@@ -14,14 +14,14 @@ Out of the 1600 initial airfoils in the dataset, only 600 were able to make XFoi
 As mentioned previously, the number of shape coordinates for each airfoil file is not consistent. In average, each file contains about 20 discrete points which were not extracted at the same x coordinate. Moreover, the discrete shape parameterization can lead to poor results when applied to a machine learning framework or an optimization process, as any small change in the discrete shape coordinates can lead to a degenerated shape that does not correspond to a feasible airfoil shape. The goal of the data preprocessing for this project is to reduce the dimensionality of the dataset, make it homogeneous, readable and practical for any machine learning framework. There exist multiple methods to perform this, such as changing the shape parameterization technique, using Bezier curves or the NACA 4-digit method. One of the methods that has proven to be effective in terms of representing airfoil shapes is the PARSEC method that only contains 11 shape parameters, reducing the dimensionality in half. Additionaly, the trailing edge thickness and location is assumed to be 0, which further reduces dimensions to 9. An illustration of the PARSEC parameterization is shown in the Figure 1[1].
 
 <figure>
-<center><img src="Images/parsec_parameters.PNG" width="400"></center>
+<center><img src="Images/parsec_parameters.PNG" width="500"></center>
 <center><figcaption>Figure 1.Visualization of PARSEC parameters</figcaption></center>
 </figure>
 
 The final data pre-processing is to convert the airfoil dataset using discrete shape parameterization into a dataset using a PARSEC parameterization. To do so, an optimization algorithm is applied to each airfoil in the dataset in order to find the most fitting PARSEC parameters resulting in the closest airfoil shape to the original. The final dataset is then a list of 600 airfoils having as features the corresponding 9 PARSEC parameters and their lift coefficient, drag coefficient and voume as labels. Parameterization seems to work very well. Even for the worst parameterization, the parameterized airfoil quite resembles the actual airfoil. 
 
 <figure>
-<center><img src="Images/airfoil_parameterization.png"></center>
+<center><img src="Images/airfoil_parameterization.png" width="500"></center>
 <center><figcaption>Figure 2. Airfoil parameterization results</figcaption></center>
 </figure>
 
